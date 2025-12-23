@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mockups_pablo_mario/widgets/sidebar_widget.dart';
 
-class UsuariosScreen extends StatelessWidget {
-  const UsuariosScreen({super.key});
+class RecursosScreen extends StatelessWidget {
+  const RecursosScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        title: const Text("Usuarios"),
+        title: const Text("Recursos"),
         backgroundColor: const Color(0xFF2C3E50),
       ),
       body: Padding(
@@ -17,31 +17,34 @@ class UsuariosScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Título + botón
+            // 🔹 TÍTULO + BOTÓN
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Sidebar(),
+                Sidebar(), // 👈 MISMA SIDEBAR
                 const Text(
-                  "Gestión de Usuarios",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  "Gestión de Recursos",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.add),
-                  label: const Text("Añadir usuario"),
+                  label: const Text("Añadir recurso"),
                 ),
               ],
             ),
 
             const SizedBox(height: 20),
 
-            // Buscador
+            // 🔹 BUSCADOR
             SizedBox(
               width: 300,
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: "Buscar usuario...",
+                  hintText: "Buscar recurso...",
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -52,7 +55,7 @@ class UsuariosScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Tabla
+            // 🔹 TABLA
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -63,15 +66,15 @@ class UsuariosScreen extends StatelessWidget {
                 child: DataTable(
                   columns: const [
                     DataColumn(label: Text("Nombre")),
-                    DataColumn(label: Text("Email")),
-                    DataColumn(label: Text("Rol")),
+                    DataColumn(label: Text("Tipo")),
+                    DataColumn(label: Text("Ubicación")),
                     DataColumn(label: Text("Estado")),
                     DataColumn(label: Text("Acciones")),
                   ],
                   rows: [
-                    _fila("Juan Pérez", "juan@ies.es", "Docente", "Activo"),
-                    _fila("Ana López", "ana@ies.es", "Administrador", "Activo"),
-                    _fila("Carlos Ruiz", "carlos@ies.es", "Docente", "Inactivo"),
+                    _fila("Aula 1", "Aula", "Planta 1", "Libre"),
+                    _fila("Proyector 3", "Equipo", "Almacén", "Ocupado"),
+                    _fila("Carrito Portátil", "Equipo", "Planta 2", "Libre"),
                   ],
                 ),
               ),
@@ -82,22 +85,23 @@ class UsuariosScreen extends StatelessWidget {
     );
   }
 
+  // 🔹 FILA MOCK
   DataRow _fila(
     String nombre,
-    String email,
-    String rol,
+    String tipo,
+    String ubicacion,
     String estado,
   ) {
     return DataRow(
       cells: [
         DataCell(Text(nombre)),
-        DataCell(Text(email)),
-        DataCell(Text(rol)),
+        DataCell(Text(tipo)),
+        DataCell(Text(ubicacion)),
         DataCell(
           Text(
             estado,
             style: TextStyle(
-              color: estado == "Activo" ? Colors.green : Colors.red,
+              color: estado == "Libre" ? Colors.green : Colors.red,
               fontWeight: FontWeight.bold,
             ),
           ),

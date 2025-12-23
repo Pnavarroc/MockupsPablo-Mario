@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mockups_pablo_mario/screens/gestion_recursos_screen.dart';
+import 'package:mockups_pablo_mario/screens/gestion_usuarios_screen.dart';
+import '../screens/dashboard_screen.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
@@ -16,37 +19,60 @@ class Sidebar extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "IES Recursos",
-              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+
+          const SizedBox(height: 30),
+
+          // DASHBOARD
+          _item(context, "Dashboard", const DashboardScreen()),
+
+          const SizedBox(height: 20),
+
+          // SECCIÓN GESTIÓN
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              "Panel Administrativo",
-              style: TextStyle(color: Colors.white70, fontSize: 12),
+              "GESTIÓN",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+                letterSpacing: 1,
+              ),
             ),
           ),
-          const SizedBox(height: 30),
-          _menuItem("Dashboard", true),
-          _menuItem("Recursos", false),
-          _menuItem("Reservas", false),
-          _menuItem("Usuarios", false),
+
+          const SizedBox(height: 10),
+
+          _item(context, "Gestión de Recursos", const RecursosScreen()),
+          _item(context, "Gestión de Reservas", const RecursosScreen()),
+          _item(context, "Gestión de Usuarios", const UsuariosScreen()),
         ],
       ),
     );
   }
 
-  Widget _menuItem(String text, bool active) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: BoxDecoration(
-        color: active ? Colors.blue.withOpacity(0.3) : Colors.transparent,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: active ? FontWeight.bold : FontWeight.normal,
+  Widget _item(BuildContext context, String text, Widget screen) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => screen),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+          ),
         ),
       ),
     );

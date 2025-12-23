@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mockups_pablo_mario/widgets/dashboard_hearder_widget.dart';
-import 'package:mockups_pablo_mario/widgets/section_card';
+import 'package:mockups_pablo_mario/widgets/section_card.dart';
 import 'package:mockups_pablo_mario/widgets/sidebar_widget.dart';
 import 'package:mockups_pablo_mario/widgets/stats_grid_widget.dart';
 
-
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -17,7 +16,7 @@ class DashboardScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF8F9FA),
       body: Row(
         children: [
-          const Sidebar(),
+          Sidebar(), // 🔑 quitamos const por seguridad
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(30),
@@ -30,11 +29,13 @@ class DashboardScreen extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
-                  const SectionCard(
+                  SectionCard( // 🔑 SIN const
                     titulo: "Reservas de Hoy",
                     child: SizedBox(
                       height: 180,
-                      child: Center(child: Text("Tabla de reservas")),
+                      child: Center(
+                        child: Text("Tabla de reservas"),
+                      ),
                     ),
                   ),
                 ],

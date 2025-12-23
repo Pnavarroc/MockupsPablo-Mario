@@ -4,7 +4,11 @@ class SectionCard extends StatelessWidget {
   final String titulo;
   final Widget child;
 
-  const SectionCard({super.key, required this.titulo, required this.child});
+  const SectionCard({
+    super.key,
+    required this.titulo,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,10 @@ class SectionCard extends StatelessWidget {
         children: [
           Text(
             titulo,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 16),
           child,
